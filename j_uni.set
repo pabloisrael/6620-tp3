@@ -15,7 +15,7 @@
 		"slt":  {"type": "R", "args": ["reg", "reg", "reg"], "fields": {"op": 0, "rs": "#2", "rt": "#3", "rd": "#1", "shamt": 0, "func": 42}, "desc": "$t1 = ($t2 < $t3) ? 1 : 0"},
 		"j":    {"type": "J", "args": ["target"], "fields": {"op": 2, "target": "#1"}, "desc": "PC = target"},
 		
-        "ja":    {"type": "R", "args": ["reg", "reg"], "fields": {"op": 1, "rs": "#1", "rt": "#2", "rd": 0,  "shamt": 0, "func": 32}, "desc": "$t1 = $t2 + $t3"},
+        "ja":    {"type": "I", "args": ["reg", "reg"], "fields": {"op": 1, "rs": "#1", "rt": "#2", "imm": 0, "func": 32}, "desc": "$t1 = $t2 + $t3"},
 		
         "addi": {"type": "I", "args": ["reg", "reg", "int"], "fields": {"op": 8, "rs": "#2", "rt": "#1", "imm": "#3"}, "desc": "$t1 = $t2 + 23"},
 		"beq":  {"type": "I", "args": ["reg", "reg", "offset"], "fields": {"op": 4, "rs": "#1", "rt": "#2", "imm": "#3"}, "desc": "PC += ($t1 == $t2) ? (offset * 4 + 4) : 4"},
@@ -36,7 +36,7 @@
 	},
 	"control": {
 		"0": {"RegDst": 1, "RegWrite": 1, "ALUOp": 2, "ALUSrc": 0, "MemToReg": 0},
-		"1": {"RegDst": 1, "RegWrite": 0, "ALUOp": 2, "ALUSrc": 0, "MemToReg": 0, "Jump": 1, "Branch": 0},
+		"1": {"RegDst": 1, "RegWrite": 0, "ALUOp": 3, "ALUSrc": 0, "MemToReg": 0, "Jump": 1, "Branch": 0},
 		"8": {"RegDst": 0, "RegWrite": 1, "ALUOp": 0, "ALUSrc": 1, "MemToReg": 0},
 		"2": {"Jump": 1, "Branch": 1},
 		"4": {"ALUOp": 1, "ALUSrc": 0, "Branch": 1},
@@ -55,7 +55,8 @@
 			{"aluop": 2, "func": 36, "out": {"Operation": 0}},
 			{"aluop": 2, "func": 37, "out": {"Operation": 1}},
 			{"aluop": 2, "func": 39, "out": {"Operation": 12}},
-			{"aluop": 2, "func": 42, "out": {"Operation": 7}}
+            {"aluop": 2, "func": 42, "out": {"Operation": 7}},
+            {"aluop": 3, "out": {"Operation": 2}}
 		],
 		"operations": {
 			"0": "and",
